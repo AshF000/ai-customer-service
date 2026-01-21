@@ -1,14 +1,16 @@
-import EmojiPicker, { Emoji } from "emoji-picker-react";
+import ThemeContext from "@/context/ThemeContext";
+import EmojiPicker from "emoji-picker-react";
 import { Mic, Paperclip, SendHorizontal, Smile } from "lucide-react";
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 
 const ChatInput = ({ setChats }) => {
   const [inpVal, setInpVal] = useState("");
   const [emoji, setEmoji] = useState(false);
-
+  const { theme } = useContext(ThemeContext);
+  const isLight = theme === "light";
   const handleEnter = () => {
     if (!inpVal.trim()) return;
-    setChats((p) => [...p, { sender: "user", text: inpVal.trim() }]);
+    setChats((p) => [...p, { sender: "admin", text: inpVal.trim() }]);
     setInpVal("");
     setEmoji(false);
   };
@@ -25,12 +27,20 @@ const ChatInput = ({ setChats }) => {
   };
 
   return (
-    <div className="h-1/12 flex items-center gap-2 px-2 bg-slate-100">
+    <div
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl shadow-sm border ${
+        isLight ? "bg-white border-slate-200" : "bg-gray-800 border-gray-700"
+      }`}
+    >
       <div className="relative">
-        <button className="chat-btn" onClick={handleEmojiToggle}>
+        <button
+          className={`chat-btn ${isLight ? "" : "bg-gray-700 text-white"}`}
+          aria-label="Add emoji"
+          onClick={handleEmojiToggle}
+        >
           <Smile />
         </button>
-        <div className="absolute bottom-full left-0 mt-2">
+        <div className="absolute bottom-full left-0 mt-2 z-10">
           <EmojiPicker
             open={emoji}
             emojiStyle="apple"
@@ -47,16 +57,30 @@ const ChatInput = ({ setChats }) => {
         }}
         onKeyDown={handleKeyDown}
         value={inpVal}
-        placeholder="Enter your text"
-        className="grow resize-none py-2 px-4 text-lg bg-white rounded-xl border h-12"
+        placeholder="Type a message..."
+        className={`grow resize-none py-2 px-4 text-base rounded-lg border focus:border-violet-400 focus:outline-none transition h-11 shadow-sm ${
+          isLight
+            ? "bg-slate-50 border-slate-400"
+            : "bg-gray-900 text-white border-gray-600 border-2"
+        }`}
       />
-      <button onClick={handleEnter} className="chat-btn">
+      <button
+        onClick={handleEnter}
+        className={`chat-btn ${isLight ? "" : "bg-gray-700 text-white"}`}
+        aria-label="Send"
+      >
         <SendHorizontal />
       </button>
-      <button className="chat-btn">
+      <button
+        className={`chat-btn ${isLight ? "" : "bg-gray-700 text-white"}`}
+        aria-label="Attach file"
+      >
         <Paperclip />
       </button>
-      <button className="chat-btn">
+      <button
+        className={`chat-btn ${isLight ? "" : "bg-gray-700 text-white"}`}
+        aria-label="Voice input"
+      >
         <Mic />
       </button>
     </div>

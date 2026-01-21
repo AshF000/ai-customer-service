@@ -58,5 +58,4 @@ public/
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Ashfiq%20Islam-informational?logo=github)](https://linkedin.com/in/ashfiq-islam)
 
-
 For more information or to discuss opportunities, feel free to contact me.
