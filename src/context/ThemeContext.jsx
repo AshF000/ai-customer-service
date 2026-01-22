@@ -24,4 +24,4 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-export default ThemeContext
+export default ThemeContext;
