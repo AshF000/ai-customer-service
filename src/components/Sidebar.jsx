@@ -6,9 +6,13 @@ import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "Dashboard", icon: <Home size={24} />, to: "/admin/dashboard" },
-  { label: "Live Chats", icon: <MessageSquareDot size={24} />, to: "/inbox" },
-  { label: "Tickets", icon: <Tags size={24} />, to: "/calendar" },
-  { label: "Settings", icon: <Settings size={24} />, to: "/search" },
+  {
+    label: "Live Chats",
+    icon: <MessageSquareDot size={24} />,
+    to: "/admin/live-chats",
+  },
+  { label: "Tickets", icon: <Tags size={24} />, to: "/admin/tickets" },
+  { label: "Settings", icon: <Settings size={24} />, to: "/admin/settings" },
 ];
 
 const Sidebar = ({ className = "", ...props }) => {

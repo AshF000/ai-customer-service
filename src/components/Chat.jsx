@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import ChatBlock from "../components/ChatBlock";
-import ChatInput from "../components/ChatInput";
+import ChatBlock from "./ChatBlock";
+import ChatInput from "./ChatInput";
 import ThemeToggle from "@/components/ThemeToggle";
 
-const Chat = ({ name = "AI Customer Support" }) => {
+const Chat = ({ name = "AI Customer Support", emoji = true, voice = true }) => {
   const [chats, setChats] = useState([]);
   const chatEndRef = useRef(null);
 
@@ -51,7 +51,7 @@ const Chat = ({ name = "AI Customer Support" }) => {
       </div>
 
       {/* Input bar */}
-      <ChatInput setChats={setChats} />
+      <ChatInput setChats={setChats} showEmoji={emoji} showVoice={voice} />
     </div>
   );
 };

@@ -1,32 +1,25 @@
 import { Navigate, Route, Routes } from "react-router";
-import Chat from "./pages/Chat";
-import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-
-const HalfWidthLayout = ({ children }) => (
-  <div className="w-1/2 h-screen mx-auto">{children}</div>
-);
+import LiveChats from "./pages/LiveChats";
+import Admin from "./pages/Admin";
+import Settings from "./pages/Settings";
+import Tickets from "./pages/Tickets";
+import Main from "./pages/Main";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to={"/admin/dashboard"} />} />
-
-      {/* <Route path="/" element={<Chat />} /> */}
-
-      <Route
-        path="/chat"
-        element={
-          <HalfWidthLayout>
-            <Chat />
-          </HalfWidthLayout>
-        }
-      />
-
-      <Route path="/admin/dashboard" element={<Dashboard />} />
-
-      <Route path="/admin/login" element={<Login />} />
-      <Route path="/admin" element={<Navigate to={"/admin/login"} />} />
+      {/* default route */}
+      <Route path="/" element={<Navigate to={"/main"} />} />
+      {/* nested admin routes */}
+      <Route path="/admin" element={<Admin />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="live-chats" element={<LiveChats />} />
+        <Route path="tickets" element={<Tickets />} />
+        <Route path="settings" element={<Settings />} />
+      </Route>
+      {/* chatbot route */}
+      <Route path="/main" element={<Main />} />
     </Routes>
   );
 };

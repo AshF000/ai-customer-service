@@ -67,17 +67,15 @@ const Dashboard = () => {
   ));
 
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <div className="p-4 bg-slate-200 dark:bg-slate-900 flex-1 overflow-auto">
-        <div className=" bg-white dark:bg-slate-500 p-4 rounded-lg">
-          <h2 className="mb-4 text-2xl dark:text-slate-50 font-medium">
-            Quick Stats
-          </h2>
-          <div className="flex flex-wrap gap-4 justify-start">{cards}</div>
-        </div>
+    <>
+      {/* dashboard part */}
+      <div className=" bg-white dark:bg-slate-800 p-4 rounded-lg">
+        <h2 className="mb-4 text-2xl dark:text-slate-50 font-medium">
+          Quick Stats
+        </h2>
+        <div className="flex flex-wrap gap-4 justify-start">{cards}</div>
       </div>
-    </div>
+    </>
   );
 };
 
