@@ -5,6 +5,7 @@ import Admin from "./pages/Admin";
 import Settings from "./pages/Settings";
 import Tickets from "./pages/Tickets";
 import Main from "./pages/Main";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route path="/" element={<Navigate to={"/main"} />} />
       {/* nested admin routes */}
       <Route path="/admin" element={<Admin />}>
+        <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="live-chats" element={<LiveChats />} />
         <Route path="tickets" element={<Tickets />} />

@@ -80,7 +80,7 @@ const Sidebar = ({ className = "", ...props }) => {
               )}
             >
               {<LogOut />}
-              <span>Login/Logout</span>
+              <span>Logout</span>
             </Link>
           </div>
         </nav>
