@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
 // import type { UserAdmin } from "@/type";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,7 +12,9 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [passwordErr, setPasswordErr] = useState<string>("");
 
-  const {login} = useAuth()
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
 
   const handleReset = () => {
     setEmail("");
@@ -21,11 +24,18 @@ const Login = () => {
   };
 
   const handleSubmit = async () => {
-    if (!email.trim()) setEmailErr("Nai to kichu");
-    console.log(email, password);
-    login(email, password);
-    // const user: UserAdmin = await res.json();
-    // console.table(user);
+    if (!email.trim()) {
+      setEmailErr("Nai to kichu");
+      return;
+    }
+
+    const isLogged: boolean = await login(email, password);
+
+    if (isLogged) {
+      navigate("/admin/dashboard");
+    } else {
+      console.log("Login failed");
+    }
   };
 
   return (
@@ -59,6 +69,7 @@ const Login = () => {
               setPasswordErr("");
               setPassword(e.target.value);
             }}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           />
           <FieldDescription>{passwordErr ?? ""}</FieldDescription>
         </Field>

@@ -11,10 +11,12 @@ const App = () => {
   return (
     <Routes>
       {/* default route */}
-      <Route path="/" element={<Navigate to={"/main"} />} />
+      <Route path="/" element={<Navigate to={"/admin"} />} />
+
+      <Route path="/admin/login" element={<Login />} />
+
       {/* nested admin routes */}
       <Route path="/admin" element={<Admin />}>
-        <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="live-chats" element={<LiveChats />} />
         <Route path="tickets" element={<Tickets />} />

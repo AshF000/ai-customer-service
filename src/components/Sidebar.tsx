@@ -3,6 +3,7 @@ import { cn } from "../lib/utils";
 import { useLocation, Link } from "react-router";
 import { useRef } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { useAuth } from "@/context/AuthContext";
 
 const navItems = [
   { label: "Dashboard", icon: <Home size={24} />, to: "/admin/dashboard" },
@@ -18,6 +19,7 @@ const navItems = [
 const Sidebar = ({ className = "", ...props }) => {
   const location = useLocation();
   const sidebarRef = useRef(null);
+  const { logout } = useAuth();
 
   return (
     <>
@@ -35,17 +37,23 @@ const Sidebar = ({ className = "", ...props }) => {
           <div
             className={`h-20 flex justify-between items-center px-4  bg-slate-500 dark:bg-gray-800`}
           >
-            <div className="flex gap-2 items-center">
-              {/* user header */}
+            {/* user header */}
+            <div className="flex gap-2 items-center max-w-50">
+              {/* user image */}
               <div
-                className={`w-12 h-12 rounded-full overflow-hidden bg-gray-700 dark:border-2 dark:border-slate-400`}
+                className={`w-10 aspect-square rounded-full overflow-hidden bg-gray-700 dark:border-2 dark:border-slate-400`}
               >
                 <img
                   src="https://api.dicebear.com/9.x/notionists/svg?seed=Jocelyn"
                   alt="avatar"
                 />
               </div>
-              <p className={`text-xl text-white`}>Username</p>
+              <p
+                title={props.username}
+                className={`text-lg text-white truncate`}
+              >
+                {props.username}
+              </p>
             </div>
             {/* settings */}
             <ThemeToggle />
@@ -72,8 +80,8 @@ const Sidebar = ({ className = "", ...props }) => {
             })}
           </div>
           <div className="py-4 ">
-            <Link
-              to={"/"}
+            <button
+              onClick={logout}
               className={cn(
                 "flex items-center gap-3 px-4 py-2 rounded-lg text-base font-medium transition-colors",
                 "text-gray-700 hover:bg-slate-100 dark:text-gray-200 dark:hover:bg-gray-800",
@@ -81,7 +89,7 @@ const Sidebar = ({ className = "", ...props }) => {
             >
               {<LogOut />}
               <span>Logout</span>
-            </Link>
+            </button>
           </div>
         </nav>
       </aside>

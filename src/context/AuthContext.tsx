@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 interface AuthContextType {
   user: UserAdmin | null;
-  login: (email: string, password: string) => Promise<void | boolean>;
+  login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -18,14 +18,15 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       email: email,
       password: password,
     });
-    // const data: UserAdmin = await res.json();
-    setUser(null);
-    console.log("daataa");
+    if (error) return false;
+    setUser({ email: data?.user?.email });
     console.log(data);
-    console.log("eeerrrorrr");
     console.log(error);
+    return true;
   };
-  const logout = () => {};
+  const logout = () => {
+    setUser(null);
+  };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
@@ -43,4 +44,4 @@ const useAuth = (): AuthContextType => {
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export {useAuth, AuthProvider}
+export { useAuth, AuthProvider };
