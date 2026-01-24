@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router";
+
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 import Dashboard from "./pages/Dashboard";
 import LiveChats from "./pages/LiveChats";
-import Admin from "./pages/Admin";
-import Settings from "./pages/Settings";
-import Tickets from "./pages/Tickets";
+import { Settings, Tickets } from "lucide-react";
 import Main from "./pages/Main";
-import Login from "./pages/Login";
 
 const App = () => {
   return (

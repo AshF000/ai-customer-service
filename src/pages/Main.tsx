@@ -3,7 +3,7 @@ import { useState } from "react";
 import Chat from "../components/Chat";
 
 const Main = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const toggleOpen = () => {
     setOpen((o) => !o);

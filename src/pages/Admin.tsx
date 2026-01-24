@@ -2,7 +2,7 @@ import Sidebar from "@/components/Sidebar";
 import { Outlet } from "react-router";
 
 const Admin = () => {
-  let logged = false;
+  const logged: boolean = true;
 
   return (
     <div className="flex h-screen">

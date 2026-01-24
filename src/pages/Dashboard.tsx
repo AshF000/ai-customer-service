@@ -1,11 +1,9 @@
-import Sidebar from "@/components/Sidebar";
 import {
   BotMessageSquare,
   MessagesSquare,
   Ticket,
   TicketPlus,
 } from "lucide-react";
-import React from "react";
 
 const Dashboard = () => {
   const cardDetails = [
