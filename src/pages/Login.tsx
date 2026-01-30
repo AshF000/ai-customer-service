@@ -3,7 +3,7 @@ import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
 // import type { UserAdmin } from "@/type";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 
 const Login = () => {
@@ -11,6 +11,8 @@ const Login = () => {
   const [emailErr, setEmailErr] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordErr, setPasswordErr] = useState<string>("");
+
+  const passRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
@@ -52,6 +54,7 @@ const Login = () => {
               setEmailErr("");
               setEmail(e.target.value);
             }}
+            onKeyDown={(e) => e.key === "Enter" && passRef.current?.focus()}
           />
           <FieldDescription className={`text-red-600 dark:text-red-400`}>
             {emailErr ?? ""}
@@ -61,6 +64,7 @@ const Login = () => {
         <Field>
           <FieldLabel htmlFor="input-field-password">Password</FieldLabel>
           <Input
+            ref={passRef}
             id="input-field-password"
             type="password"
             placeholder="Enter your password"
